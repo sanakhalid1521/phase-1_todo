@@ -8,6 +8,11 @@
 ## User Scenarios & Testing *(mandatory)*
 
 <!--
+  AI-FIRST MANDATE: This specification must be refined until Claude Code can generate
+  the implementation autonomously. Be as specific as possible regarding logic and state.
+-->
+
+<!--
   IMPORTANT: User stories should be PRIORITIZED as user journeys ordered by importance.
   Each user story/journey must be INDEPENDENTLY TESTABLE - meaning if you implement just ONE of them,
   you should still have a viable MVP (Minimum Viable Product) that delivers value.

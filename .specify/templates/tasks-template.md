@@ -20,10 +20,9 @@ description: "Task list template for feature implementation"
 
 ## Path Conventions
 
-- **Single project**: `src/`, `tests/` at repository root
-- **Web app**: `backend/src/`, `frontend/src/`
-- **Mobile**: `api/src/`, `ios/src/` or `android/src/`
-- Paths shown below assume single project - adjust based on plan.md structure
+- **Phase I (Single project)**: `src/main.py`, `src/models.py`, `src/services.py`, `tests/`
+- **Future Web/Mobile**: Refer to `plan.md` structure
+- Paths shown below assume modular single project - adjust based on plan.md structure
 
 <!-- 
   ============================================================================

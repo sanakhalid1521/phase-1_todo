@@ -31,7 +31,13 @@
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-[Gates determined based on constitution file]
+- [ ] **I. Development Philosophy**: Is the spec complete/refined enough for AI-First code generation?
+- [ ] **I. Development Philosophy**: Does this align with the current Phase (I-V) and Progressive Enhancement?
+- [ ] **II. Code Quality**: Does the design allow for Clean Code, SOLID principles, and 80%+ test coverage?
+- [ ] **II. Code Quality**: Are Type Safety (Python hints/TS) and Docstrings planned?
+- [ ] **III. User Experience**: Does the design ensure intuitiveness, clear feedback, and resilience?
+- [ ] **IV. Security & Privacy**: Are authentication, validation, and secret management addressed?
+- [ ] **Phase I Constraint**: (If Phase I) Does it strictly use Python 3.13+, in-memory storage, and stdlib only?
 
 ## Project Structure
 
