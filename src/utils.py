@@ -1,5 +1,6 @@
 import os
 import platform
+import sys
 from typing import List
 from src.models import Task
 
@@ -51,7 +52,13 @@ def format_task_table(tasks: List[Task], stats: dict):
     print(separator)
 
     for task in tasks:
-        status_icon = "✓" if task.completed else "○"
+        # Use simple ASCII for status if Unicode is not supported
+        try:
+            status_icon = "✓" if task.completed else "○"
+            f"{status_icon}".encode(sys.stdout.encoding)
+        except (UnicodeEncodeError, AttributeError):
+            status_icon = "[x]" if task.completed else "[ ]"
+
         created_str = task.created_at.strftime("%Y-%m-%d %H:%M")
         short_id = str(task.id)[:8]
 
