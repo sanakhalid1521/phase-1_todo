@@ -1,14 +1,13 @@
 from dataclasses import dataclass, field
 from datetime import datetime
-from uuid import UUID, uuid4
 from typing import Optional
 
 @dataclass
 class Task:
     """Represents a single task in the Todo application."""
+    id: str  # Format: "001", "002", etc.
     title: str
     description: str
-    id: UUID = field(default_factory=uuid4)
     completed: bool = False
     created_at: datetime = field(default_factory=datetime.now)
     updated_at: datetime = field(default_factory=datetime.now)

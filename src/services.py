@@ -6,10 +6,13 @@ class TodoService:
 
     def __init__(self):
         self._tasks: List[Task] = []
+        self._counter = 0
 
     def add_task(self, title: str, description: str) -> Task:
-        """Create and add a new task."""
-        task = Task(title=title, description=description)
+        """Create and add a new task with sequential ID."""
+        self._counter += 1
+        new_id = f"{self._counter:03}"  # Generates "001", "002"...
+        task = Task(id=new_id, title=title, description=description)
         self._tasks.append(task)
         return task
 
