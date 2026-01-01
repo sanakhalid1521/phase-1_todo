@@ -1,61 +1,104 @@
-# Implementation Plan: Todo Application Phase I
+# Implementation Plan: [FEATURE]
 
-**Branch**: `001-todo-phase1` | **Date**: 2025-12-30 | **Spec**: [specs/001-todo-phase1/spec.md](spec.md)
-**Input**: technical implementation plan for Phase I (Python console-based task management system).
+**Branch**: `[###-feature-name]` | **Date**: [DATE] | **Spec**: [link]
+**Input**: Feature specification from `/specs/[###-feature-name]/spec.md`
+
+**Note**: This template is filled in by the `/sp.plan` command. See `.specify/templates/commands/plan.md` for the execution workflow.
 
 ## Summary
 
-Build a modular Python 3.13+ console application using an AI-First Spec-Driven Development approach. The system will manage tasks in-memory using a central `TodoService` and a command-line interface with a looping menu. Data integrity will be maintained via strict validation in the models and service layers, using only the Python standard library.
+[Extract from feature spec: primary requirement + technical approach from research]
 
 ## Technical Context
 
-**Language/Version**: Python 3.13+
-**Primary Dependencies**: Standard library only (uuid, datetime, dataclasses, typing). `uv` for environment management.
-**Storage**: In-memory (Python list within TodoService).
-**Testing**: Manual testing checklist (P1 for MVP); structure compatible with future pytest suite.
-**Target Platform**: Console / CLI.
-**Project Type**: Single modular project.
-**Performance Goals**: Instantaneous response for all in-memory operations.
-**Constraints**: No external pip packages; strictly separate layers (UI, Service, Model).
-**Scale/Scope**: Phase I of V; focus on basic CRUD and toggle operations.
+<!--
+  ACTION REQUIRED: Replace the content in this section with the technical details
+  for the project. The structure here is presented in advisory capacity to guide
+  the iteration process.
+-->
+
+**Language/Version**: [e.g., Python 3.11, Swift 5.9, Rust 1.75 or NEEDS CLARIFICATION]  
+**Primary Dependencies**: [e.g., FastAPI, UIKit, LLVM or NEEDS CLARIFICATION]  
+**Storage**: [if applicable, e.g., PostgreSQL, CoreData, files or N/A]  
+**Testing**: [e.g., pytest, XCTest, cargo test or NEEDS CLARIFICATION]  
+**Target Platform**: [e.g., Linux server, iOS 15+, WASM or NEEDS CLARIFICATION]
+**Project Type**: [single/web/mobile - determines source structure]  
+**Performance Goals**: [domain-specific, e.g., 1000 req/s, 10k lines/sec, 60 fps or NEEDS CLARIFICATION]  
+**Constraints**: [domain-specific, e.g., <200ms p95, <100MB memory, offline-capable or NEEDS CLARIFICATION]  
+**Scale/Scope**: [domain-specific, e.g., 10k users, 1M LOC, 50 screens or NEEDS CLARIFICATION]
 
 ## Constitution Check
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-- [x] **I. Development Philosophy**: Is the spec complete/refined enough for AI-First code generation? (Yes, clarified sequential input).
-- [x] **I. Development Philosophy**: Does this align with the current Phase (I-V) and Progressive Enhancement? (Yes, Phase I: Console).
-- [x] **II. Code Quality**: Does the design allow for Clean Code, SOLID principles, and 80%+ test coverage? (Yes, modular structure planned).
-- [x] **II. Code Quality**: Are Type Safety (Python hints/TS) and Docstrings planned? (Yes, mandated).
-- [x] **III. User Experience**: Does the design ensure intuitiveness, clear feedback, and resilience? (Yes, sequential prompts and screen clearing).
-- [x] **IV. Security & Privacy**: Are authentication, validation, and secret management addressed? (Validation addressed; no Auth in Phase I).
-- [x] **Phase I Constraint**: (If Phase I) Does it strictly use Python 3.13+, in-memory storage, and stdlib only? (Yes).
+- [ ] **I. Development Philosophy**: Is the spec complete/refined enough for AI-First code generation?
+- [ ] **I. Development Philosophy**: Does this align with the current Phase (I-V) and Progressive Enhancement?
+- [ ] **II. Code Quality**: Does the design allow for Clean Code, SOLID principles, and 80%+ test coverage?
+- [ ] **II. Code Quality**: Are Type Safety (Python hints/TS) and Docstrings planned?
+- [ ] **III. User Experience**: Does the design ensure intuitiveness, clear feedback, and resilience?
+- [ ] **IV. Security & Privacy**: Are authentication, validation, and secret management addressed?
+- [ ] **Phase I Constraint**: (If Phase I) Does it strictly use Python 3.13+, in-memory storage, and stdlib only?
 
 ## Project Structure
 
 ### Documentation (this feature)
 
 ```text
-specs/001-todo-phase1/
-├── plan.md              # This file
-├── research.md          # Phase 0 output
-├── data-model.md        # Phase 1 output
-├── quickstart.md        # Phase 1 output
-└── tasks.md             # Phase 2 output
+specs/[###-feature]/
+├── plan.md              # This file (/sp.plan command output)
+├── research.md          # Phase 0 output (/sp.plan command)
+├── data-model.md        # Phase 1 output (/sp.plan command)
+├── quickstart.md        # Phase 1 output (/sp.plan command)
+├── contracts/           # Phase 1 output (/sp.plan command)
+└── tasks.md             # Phase 2 output (/sp.tasks command - NOT created by /sp.plan)
 ```
 
 ### Source Code (repository root)
+<!--
+  ACTION REQUIRED: Replace the placeholder tree below with the concrete layout
+  for this feature. Delete unused options and expand the chosen structure with
+  real paths (e.g., apps/admin, packages/something). The delivered plan must
+  not include Option labels.
+-->
 
 ```text
+# [REMOVE IF UNUSED] Option 1: Single project (DEFAULT)
 src/
-├── __init__.py
-├── main.py              # CLI Menu & Entry Point
-├── models.py            # Task Dataclass & Validation
-├── services.py          # TodoService (Business Logic)
-└── utils.py             # UI Formatting (Tables, Colors)
+├── models/
+├── services/
+├── cli/
+└── lib/
+
+tests/
+├── contract/
+├── integration/
+└── unit/
+
+# [REMOVE IF UNUSED] Option 2: Web application (when "frontend" + "backend" detected)
+backend/
+├── src/
+│   ├── models/
+│   ├── services/
+│   └── api/
+└── tests/
+
+frontend/
+├── src/
+│   ├── components/
+│   ├── pages/
+│   └── services/
+└── tests/
+
+# [REMOVE IF UNUSED] Option 3: Mobile + API (when "iOS/Android" detected)
+api/
+└── [same as backend above]
+
+ios/ or android/
+└── [platform-specific structure: feature modules, UI flows, platform tests]
 ```
 
-**Structure Decision**: Single modular project with separation of concerns. UI logic resides in `main.py` and `utils.py`, business logic in `services.py`, and state structure in `models.py`.
+**Structure Decision**: [Document the selected structure and reference the real
+directories captured above]
 
 ## Complexity Tracking
 
@@ -63,4 +106,5 @@ src/
 
 | Violation | Why Needed | Simpler Alternative Rejected Because |
 |-----------|------------|-------------------------------------|
-| N/A       |            |                                     |
+| [e.g., 4th project] | [current need] | [why 3 projects insufficient] |
+| [e.g., Repository pattern] | [specific problem] | [why direct DB access insufficient] |

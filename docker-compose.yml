@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database (for local development)
+  # Note: Phase 2 uses Neon Serverless PostgreSQL in production
+  postgres:
+    image: postgres:15-alpine
+    container_name: todo-app-db
+    environment:
+      POSTGRES_USER: todo_user
+      POSTGRES_PASSWORD: todo_password
+      POSTGRES_DB: todo_app
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U todo_user -d todo_app"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # Backend Development Server
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.dev
+    container_name: todo-app-backend
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: postgresql://todo_user:todo_password@postgres:5432/todo_app
+      BETTER_AUTH_SECRET: ${BETTER_AUTH_SECRET:-your-32-character-secret-key-here}
+      JWT_ALGORITHM: HS256
+      JWT_EXPIRATION_DAYS: 7
+      CORS_ORIGINS: http://localhost:3000
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - ./backend:/app
+      - /app/.venv
+
+  # Frontend Development Server
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.dev
+    container_name: todo-app-frontend
+    ports:
+      - "3000:3000
